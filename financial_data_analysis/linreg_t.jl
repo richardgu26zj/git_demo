@@ -20,5 +20,30 @@ nu_ub = 50;
 nu = 5; 
 beta = (X'*X)\(X'*y);
 sig2 = sum((y-X*beta).^2)/T;
-lam = rand(InverseGamma(nu/2,nu/2),T,1);
-iLam = diagm(ones(T,1)./lam);
+# the trick is we need vector Float64 in Diagonal function, but rand(T,1) generates Matrix
+lam = rand(InverseGamma(nu/2,nu/2),T);
+iLam = Diagonal(ones(T)./lam);
+
+store_theta = zeros(nsim,5);
+
+count_nu = 0;
+
+for isim in 1:(nsim+burnin)
+    # sample beta
+    Dbeta = iVbeta0 + X'*iLam*X/sig2;
+    beta_hat = Dbeta\(iVbeta0*beta0 + X'*iLam*y/sig2);
+    C = cholesky(Hermitian(Dbeta)).L;
+    beta = beta_hat + C'\rand(Normal(0,1),3);
+
+    # sample lam
+    e = y - X*beta;
+    lam = rand(InverseGamma((nu+1)/2,(nu+e.^2 ./sig2)));
+    iLam = sparsevec(Diagonal(ones(T)./lam));
+
+    # sample sig2
+    sig2 = rand(InverseGamma(nu0+T/2,S0 + e'*iLam*e ./2));
+
+    # sample nu
+    nu,flag = sample_nu_MH(lam,nu,nu_ub);
+
+    
