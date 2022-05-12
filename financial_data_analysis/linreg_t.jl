@@ -21,4 +21,4 @@ nu = 5;
 beta = (X'*X)\(X'*y);
 sig2 = sum((y-X*beta).^2)/T;
 lam = rand(InverseGamma(nu/2,nu/2),T,1);
-iLam = Diagonal(ones(T,1)./lam);
+iLam = diagm(ones(T,1)./lam);
