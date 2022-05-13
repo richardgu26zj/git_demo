@@ -1,4 +1,4 @@
-using DifferentialEquations
+using DifferentialEquations,Plots
 
 function rober!(du,u,p,t)
     y1,y2,y3 = u
@@ -14,3 +14,6 @@ tspan = (0.0,1e5)
 params = [0.04,3e7,1e4]
 
 ode_prob = ODEProblem(rober!,u,tspan,params)
+
+ode_sol = solve(ode_prob)
+plot(ode_sol,tspan=(1e-6,1e5),xscale=:log10,layout=(3,1))
