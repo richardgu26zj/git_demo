@@ -33,3 +33,38 @@ methodtest("David",1.2)
 methods(methodtest)
 
 @which methodtest("Hello","World")
+
+
+# composite types
+struct  MyType
+    x
+    y::Integer
+    z::AbstractFloat
+end
+
+typeof(MyType)
+
+mt = MyType("doggo",1,3.14)
+
+typeof(mt)
+
+fieldnames(MyType)
+
+mt.x
+mt.y
+
+mt.x = "Richard"
+
+mutable struct MyMutable
+    x
+    y::Integer
+    z::AbstractFloat
+end
+
+mm = MyMutable("Catto",2,π)
+
+mm.x
+mm.x = "Richard"
+mm.x
+
+
