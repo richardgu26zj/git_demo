@@ -76,3 +76,23 @@ y2 = cos.(x)
 plot!(x,y2,label="y2 = cos(x)")
 plot!(title="Sine and Cosine Plots")
 savefig("sine_and_cos_plot.png")
+
+# another way of plotting
+plot(x,
+     y,
+     xlabel = "x range",
+     ylabel = "sin(x)",
+     title = " y = sin(x) ",
+     label = false,
+     color = :blue,
+     linewidth = 3.5,
+     linestyle =:dashdot  
+)
+plot!(x,
+      y2,
+      label = false,
+      color =:orange,
+      linewidth = 4,
+      linestyle =:dash
+)
+savefig("another_plot.png")
