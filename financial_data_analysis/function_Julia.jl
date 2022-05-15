@@ -67,4 +67,16 @@ mm.x
 mm.x = "Richard"
 mm.x
 
+using CarioMakie
+
+x = range(0, 10, length=100)
+y = sin.(x)
+lines(x,y)
+
+scatter(x,y)
+
+x = range(0,2π,length=100)
+lines(x,cos)
+lines!(x,sin)
+current_figure()
 
