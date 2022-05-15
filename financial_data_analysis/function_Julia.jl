@@ -96,3 +96,34 @@ plot!(x,
       linestyle =:dash
 )
 savefig("another_plot.png")
+
+plot(x -> sin(x),
+     xlims =(0,2π),
+     ylims = (-1.05,1.05),
+     xticks = ((0:π/2:2π),["0","π/2","π","3π/2","2π"]),
+     tickfontsize = 10,
+     linewidth = 4,
+     linecolor = :black;
+     label = "sin(x)")
+plot!(y -> cos(y),
+      linewidth = 4,
+      linestyle = :dashdot,
+      color =:blue,
+     label = "cos(y)")
+savefig("plot3.png")
+
+# try subplot here
+x = range(-2π,2π,length=200);
+y1 = 2*cos.(x) .+ 5;
+p1 = plot(x,
+          y1,
+          linewidth = 3,
+          linecolor = :blue,
+          label = "y = 2cos(x)+5");
+y2 = 3*sin.(x) .- 2;
+p2 = plot(x,
+          y2,
+          linewidth = 3,
+          linecolor =:black,
+          label = "y = 2sin(x)-2");
+plot(p1,p2,layout=(2,1))
