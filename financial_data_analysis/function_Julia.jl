@@ -67,16 +67,12 @@ mm.x
 mm.x = "Richard"
 mm.x
 
-using CarioMakie
-
-x = range(0, 10, length=100)
+using Plots
+theme(:ggplot2)
+x = range(-2π,2π,length=200)
 y = sin.(x)
-lines(x,y)
-
-scatter(x,y)
-
-x = range(0,2π,length=100)
-lines(x,cos)
-lines!(x,sin)
-current_figure()
-
+plot(x,y,label="y = sin(x)")
+y2 = cos.(x)
+plot!(x,y2,label="y2 = cos(x)")
+plot!(title="Sine and Cosine Plots")
+savefig("sine_and_cos_plot.png")
