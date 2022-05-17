@@ -1,0 +1,17 @@
+---
+title: What is Time Series
+author: Gu, Xin
+date: 2022-5-17
+---
+
+## Introduction 
+
+It is quite 
+
+```julia
+using Distributions,Plots
+dist = Normal(0,1)
+T = 500
+x = rand(dist,T)
+plot(x,linewidth = 3,linestyle = :dashdot, color =:blue, label = false)
+````
