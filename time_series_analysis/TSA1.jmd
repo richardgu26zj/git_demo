@@ -7,7 +7,10 @@ date: 2022-5-17
 # Introduction 
 
 ```julia
-using CSV,DataFrames
+using Plots,CSV,DataFrames,Distributions
+```
+
+```julia
 df = DataFrame(CSV.File("GDPC1.csv"))
 plot(df.DATE,df.GDPC1,
      linewidth = 3,
